@@ -7,7 +7,7 @@ This project involves interfacing the external camera of the Raspberry Pi 5 usin
 ## Achievements
 
 1. **Camera Interface with FFmpeg**  
-   Successfully interfaced the built-in camera of the Raspberry Pi 5 with FFmpeg. The camera stream was captured and processed to convert frames into a format compatible with OpenCV for further analysis and manipulation.
+   Successfully interfaced the camera in the Raspberry Pi 5 with FFmpeg. The camera stream was captured and processed to convert frames into a format compatible with OpenCV for further analysis and manipulation.
 
 2. **Data Annotations and Conversion**  
    Developed a system for annotating data and converting the annotations from XML format into a YOLOv5-compatible format. This step is crucial for training the YOLOv5 model for object detection tasks.
