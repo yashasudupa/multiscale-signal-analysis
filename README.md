@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project involves interfacing the built-in camera of the Raspberry Pi 5 using FFmpeg, processing image data with OpenCV, and preparing datasets for object detection using YOLOv5. The project includes data annotations, image augmentations, and outlines future work for optimization.
+This project involves interfacing the external camera of the Raspberry Pi 5 using FFmpeg, processing image data with OpenCV, and preparing datasets for object detection using YOLOv5. The project includes data annotations, image augmentations, and outlines future work for optimization.
 
 ## Achievements
 
