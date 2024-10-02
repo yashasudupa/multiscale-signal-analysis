@@ -28,4 +28,4 @@ This project involves interfacing the built-in camera of the Raspberry Pi 5 usin
 
 ## Conclusion
 
-The project successfully establishes a framework for image processing and object detection using the Raspberry Pi 5 and FFmpeg. Future enhancements will focus on optimizing performance and increasing the efficiency of the pipeline through advanced programming techniques.
+The project successfully establishes a framework for image processing and object detection of night vision images using the Raspberry Pi 5 and FFmpeg. Future enhancements will focus on optimizing performance and increasing the efficiency of the pipeline through advanced programming techniques.
