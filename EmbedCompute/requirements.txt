@@ -1,0 +1,9 @@
+cmake
+g++
+libopencv-dev
+libavformat-dev
+libavcodec-dev
+libswscale-dev
+libavutil-dev
+libx264-dev
+libx265-dev
