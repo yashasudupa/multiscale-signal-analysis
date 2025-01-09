@@ -18,9 +18,14 @@ fi
 
 # Step 1: Update and install required dependencies
 echo "Installing required packages from requirements.txt..."
-while read -r package; do
-    sudo apt install -y "$package"
-done < requirements.txt
+if [[ -f "requirements.txt" ]]; then
+    while read -r package; do
+        sudo apt install -y "$package"
+    done < requirements.txt
+else
+    echo "requirements.txt not found! Please ensure it is present in the project directory."
+    exit 1
+fi
 
 # Step 2: Download and set up ONNX Runtime (if not already installed)
 if [[ ! -d "$ONNX_RUNTIME_DIR" ]]; then
@@ -29,6 +34,8 @@ if [[ ! -d "$ONNX_RUNTIME_DIR" ]]; then
     mkdir -p "$ONNX_RUNTIME_DIR"
     tar -xvf onnxruntime.tgz -C "$ONNX_RUNTIME_DIR" --strip-components=1
     rm onnxruntime.tgz
+else
+    echo "ONNX Runtime already exists at $ONNX_RUNTIME_DIR."
 fi
 
 # Step 3: Create build directory

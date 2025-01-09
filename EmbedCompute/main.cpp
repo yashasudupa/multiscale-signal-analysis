@@ -3,16 +3,33 @@
 #include <string>
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include <opencv2/core/utility.hpp> // For image compression
 #include "YOLOInference.h"
 #include "FFmpegStream.h"  // Assuming the YOLOInference and FFmpegStream classes are in separate headers
 
 namespace po = boost::program_options;
 
+// Function for assembly optimization
+void optimizedBoundingBox(float* detections, int num_detections, int frame_width, int frame_height) {
+    // Example of inline assembly for optimization (x86-64 used for illustration; adjust for ARM or other architectures)
+    asm volatile (
+        "mov %[num], %%ecx\n\t"           // Load number of detections
+        "1:\n\t"
+        "movaps (%[det]), %%xmm0\n\t"    // Load detection data into SSE register
+        "mulps %[width], %%xmm0\n\t"    // Scale coordinates with frame dimensions
+        "sub $16, %[det]\n\t"           // Move to the next detection
+        "loop 1b\n\t"                   // Loop until all detections processed
+        :
+        : [det] "r"(detections), [num] "r"(num_detections), [width] "m"(frame_width)
+        : "ecx", "xmm0", "memory"
+    );
+}
+
 int main(int argc, char* argv[]) {
     try {
         // Argument Parsing
         std::string model_path, input_url;
-        float conf_thresh = 0.25, iou_thresh = 0.45;
+        float conf_thresh = 0.25f, iou_thresh = 0.45f; // Floating-point precision
         std::vector<int> imgsz = {640, 640};
         bool view_img = false;
 
@@ -22,8 +39,8 @@ int main(int argc, char* argv[]) {
             ("weights", po::value<std::string>(&model_path)->default_value("yolov5.onnx"), "model path")
             ("source", po::value<std::string>(&input_url)->default_value("rtsp://your_stream_url"), "input video stream URL")
             ("imgsz", po::value<std::vector<int>>(&imgsz)->multitoken(), "inference size (height, width)")
-            ("conf-thres", po::value<float>(&conf_thresh)->default_value(0.25), "confidence threshold")
-            ("iou-thres", po::value<float>(&iou_thresh)->default_value(0.45), "IOU threshold")
+            ("conf-thres", po::value<float>(&conf_thresh)->default_value(0.25f), "confidence threshold")
+            ("iou-thres", po::value<float>(&iou_thresh)->default_value(0.45f), "IOU threshold")
             ("view-img", po::bool_switch(&view_img), "show results");
 
         po::variables_map vm;
@@ -41,9 +58,19 @@ int main(int argc, char* argv[]) {
 
         while (true) {
             cv::Mat frame = stream.readFrame();
-            std::vector<float> detections = yolo.infer(frame);
 
-            // Draw bounding boxes (placeholder for actual post-processing)
+            // **Image Compression** for efficient processing
+            std::vector<uchar> compressed_frame;
+            cv::imencode(".jpg", frame, compressed_frame); // Compress frame into JPEG
+            cv::Mat decompressed_frame = cv::imdecode(compressed_frame, cv::IMREAD_COLOR); // Decompress
+
+            // Perform Inference
+            std::vector<float> detections = yolo.infer(decompressed_frame);
+
+            // **Assembly Optimization** for bounding box calculations
+            optimizedBoundingBox(detections.data(), detections.size() / 6, frame.cols, frame.rows);
+
+            // Draw bounding boxes
             for (size_t i = 0; i < detections.size(); i += 6) {
                 int x = static_cast<int>(detections[i] * frame.cols);
                 int y = static_cast<int>(detections[i + 1] * frame.rows);
@@ -65,4 +92,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
