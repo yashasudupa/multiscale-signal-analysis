@@ -26,7 +26,5 @@ This project involves interfacing an external camera with the Raspberry Pi 5 usi
 
 ## Future Work
 1. Integrate Wavelet Transform, Fourier Transform (FFT), and Power Spectral Density (PSD) to improve detection capabilities.
-2. Real-time task scheduling with FreeRTOS to offload non-critical tasks to lower priorities, enhancing detection performance
-## Conclusion
-
-The project successfully establishes a framework for image processing and object detection of night vision images using the Raspberry Pi 5 and FFmpeg. Optimized performance and increased the efficiency of the pipeline through advanced programming techniques. Working on real-time processing using FreeRTOS for efficient image processing.
+   
+2. Real-time task scheduling with FreeRTOS to offload non-critical tasks to lower priorities, enhancing detection performance.
