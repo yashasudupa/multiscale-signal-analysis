@@ -1,4 +1,4 @@
-# Micro model inference
+# Multi scale signal analysis
 
 ## Overview
 
