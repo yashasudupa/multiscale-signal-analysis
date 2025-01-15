@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project involves interfacing an external camera with the Raspberry Pi 5 using FFmpeg, processing image data with OpenCV, and preparing datasets for object detection with YOLOv5. It includes implementing data compression and optimizing night vision wildlife image detection using Assembly and C++. The project also explores future enhancements, such as integrating frequency domain analysis and real-time task scheduling with FreeRTOS.
+This project involves interfacing an external camera with the Raspberry Pi 5 using FFmpeg, processing image data, and preparing datasets for object detection. It includes implementing data compression and optimizing night vision wildlife image detection using Assembly and C++. The project also explores future enhancements, such as integrating frequency domain analysis and real-time task scheduling with FreeRTOS.
 
 ## Achievements
 
