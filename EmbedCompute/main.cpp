@@ -1,3 +1,7 @@
+// Author: Yashas Nagaraj Udupa
+// Project: Multiscale Signal Analysis
+// Description: This project focuses on improving night vision images detection capablities and enhancing detection performance.
+
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <string>
