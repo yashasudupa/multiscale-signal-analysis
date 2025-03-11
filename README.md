@@ -1,5 +1,7 @@
 # Multi scale signal analysis
 
+![image](https://github.com/user-attachments/assets/49747ae5-b6f8-4f4d-b7fc-c84f33869f49)
+
 ## Overview
 
 This project involves interfacing an external camera with the Raspberry Pi 5 using FFmpeg, processing image data, and preparing datasets for object detection. It includes implementing data compression and optimizing night vision wildlife image detection using Assembly and C++. The project also explores future enhancements, such as integrating frequency domain analysis and real-time task scheduling with FreeRTOS.
