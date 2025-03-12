@@ -1,6 +1,6 @@
 # Multi scale signal analysis
 
-![image](https://github.com/user-attachments/assets/9acea300-cbf5-4676-b873-a0a8ae36b85b)
+![image](https://github.com/user-attachments/assets/deefaa3b-8bcc-41d8-ac2b-ca08dd986a44)
 
 ## Overview
 
