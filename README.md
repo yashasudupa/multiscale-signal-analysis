@@ -43,12 +43,14 @@ The build.sh script will read from requirements.txt and install everything via a
 ```
 
 ### 4. Runtime Logs
+```xml
 [INFO] Initializing video stream...
 [INFO] FFmpeg initialized: rtsp://192.168.1.10:8554/stream
 [INFO] ONNX model loaded: yolov5n.onnx
 [INFO] Capturing and decoding frame...
 [DEBUG] Frame 001: Detected 3 objects
 [INFO] Inference complete. Frame saved to ./output/frame_001.jpg
+```
 
 ## Project Highlights
 ✅ Camera Interface using FFmpeg
