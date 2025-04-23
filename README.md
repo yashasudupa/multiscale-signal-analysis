@@ -53,12 +53,14 @@ The build.sh script will read from requirements.txt and install everything via a
 ```
 
 ## Project Highlights
+```yaml
 ✅ Camera Interface using FFmpeg
 ✅ ONNX Runtime-based YOLO Inference
 ✅ Optimized with C++ and Inline Assembly
 ✅ Data Compression + Signal Processing Modules
 ✅ Augmentation-ready Dataset Preparation
 ✅ Future-ready for FreeRTOS and Frequency Domain Analysis
+```
 
 ## Planned Enhancements
 Wavelet Transform, FFT, and Power Spectral Density integration
