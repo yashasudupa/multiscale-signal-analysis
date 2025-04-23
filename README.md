@@ -6,27 +6,59 @@
 
 This project involves interfacing an external camera with the Raspberry Pi 5 using FFmpeg, processing image data, and preparing datasets for object detection. It includes implementing data compression and optimizing night vision wildlife image detection using Assembly and C++. The project also explores future enhancements, such as integrating frequency domain analysis and real-time task scheduling with FreeRTOS.
 
-## Achievements
+## Project Structure
+```css
+   EmbedCompute/
+   ├── build.sh                ← Build + setup + run automation
+   ├── CMakeLists.txt          ← CMake configuration
+   ├── requirements.txt        ← System-level packages
+   ├── main.cpp                ← Entry point
+   ├── ffmpeg_stream.cpp/.h    ← FFmpeg decoding and OpenCV conversion
+   ├── yolo_infefrence.cpp/h   ← ONNXRuntime model handling
+   ├── embedded_nr.cpp/.h      ← Signal processing & optimization
+```
+## 🔧 Setup & Build Instructions
+Tested on: **Raspberry Pi 5**, Ubuntu 22.04 (64-bit)
 
-1. **Camera Interface with FFmpeg**  
-   Successfully interfaced the camera in the Raspberry Pi 5 with FFmpeg. The camera stream was captured and processed to convert frames into a format compatible with OpenCV for further analysis and manipulation.
+### 1. Clone the Repo
+```bash
+git clone https://github.com/yashasudupa/multiscale-signal-analysis.git
+cd multiscale-signal-analysis
+```
 
-2. **Data Annotations and Conversion**  
-   Developed a system for annotating data and converting the annotations from XML format into a YOLOv5-compatible format.
+### 2. Set Executable Permission
+```bash
+chmod +x build.sh
+```
 
-3. **Image Augmentations**  
-   Implemented various image augmentation techniques to enhance the training dataset. This process helps improve the model's robustness and generalization by artificially increasing the diversity of the training data.
+### 3. Install System Dependencies
+The build.sh script will read from requirements.txt and install everything via apt.
+```bash
+./build.sh <video_stream_url> <model.onnx>
+```
 
-4. **Fixed and Floating Point Arithmetic**  
-  Implemented floating point arithmetic to optimize computational efficiency and precision in processing tasks.
+The build.sh script will read from requirements.txt and install everything via apt.
+```bash
+./build.sh rtsp://192.168.1.10:8554/stream yolov5n.onnx
+```
 
-5. **Data Compression**  
-  Implemented techniques for data compression to reduce storage requirements and improve the speed of data transfer and processing.
+### 4. Runtime Logs
+[INFO] Initializing video stream...
+[INFO] FFmpeg initialized: rtsp://192.168.1.10:8554/stream
+[INFO] ONNX model loaded: yolov5n.onnx
+[INFO] Capturing and decoding frame...
+[DEBUG] Frame 001: Detected 3 objects
+[INFO] Inference complete. Frame saved to ./output/frame_001.jpg
 
-6. **Assembly and C++ Programming**  
-  Optimize the existing Python scripts by converting them into Assembly and C++ programming to minimize overhead and enhance performance.
+## Project Highlights
+✅ Camera Interface using FFmpeg
+✅ ONNX Runtime-based YOLO Inference
+✅ Optimized with C++ and Inline Assembly
+✅ Data Compression + Signal Processing Modules
+✅ Augmentation-ready Dataset Preparation
+✅ Future-ready for FreeRTOS and Frequency Domain Analysis
 
-## Future Work
-1. Integrate Wavelet Transform, Fourier Transform (FFT), and Power Spectral Density (PSD) to improve detection capabilities.
-   
-2. Real-time task scheduling with FreeRTOS to offload non-critical tasks to lower priorities, enhancing detection performance.
+## Planned Enhancements
+Wavelet Transform, FFT, and Power Spectral Density integration
+Real-time task prioritization using FreeRTOS
+GPU acceleration support for inference (Jetson / Pi with TPU)
