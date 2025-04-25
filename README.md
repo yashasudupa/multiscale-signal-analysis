@@ -1,4 +1,4 @@
-# Multi scale signal analysis
+# RPi5 Camera Streaming
 
 ![image](https://github.com/user-attachments/assets/2d81388b-70e7-4195-b6e8-3e21e4bc02c6)
 
